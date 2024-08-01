@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://b37h1j6h5qy1a"]
+
+[ext_resource type="Texture2D" uid="uid://c0fcmvjgpqkyb" path="res://icon.svg" id="1_8hijk"]
+[ext_resource type="Script" path="res://terrain.gd" id="1_bpcbc"]
+[ext_resource type="Script" path="res://chicken.gd" id="2_l67pb"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ahj5n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xgod4"]
+albedo_texture = ExtResource("1_8hijk")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_23bwr"]
+material = SubResource("StandardMaterial3D_xgod4")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sw5c5"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_38w4r"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="terrain" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain"]
+transform = Transform3D(-2.18557e-06, -50, 0, 50, -2.18557e-06, 0, 0, 0, 50, 0, -23.5756, -10.6083)
+shape = SubResource("CylinderShape3D_ahj5n")
+
+[node name="terrain_mesh" type="MeshInstance3D" parent="terrain"]
+transform = Transform3D(-2.18557e-06, -50, 0, 50, -2.18557e-06, 0, 0, 0, 50, 0, -23.5756, -10.6083)
+mesh = SubResource("CylinderMesh_23bwr")
+skeleton = NodePath("../..")
+script = ExtResource("1_bpcbc")
+
+[node name="chicken" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.956767, 0.788198)
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("2_l67pb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="chicken"]
+shape = SubResource("SphereShape3D_sw5c5")
+
+[node name="chicken_mesh" type="MeshInstance3D" parent="chicken"]
+mesh = SubResource("CapsuleMesh_38w4r")
+skeleton = NodePath("../..")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.28281, 18.2203)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0627905, 0.998027, 0, -0.998027, 0.0627905, 0, 13.119, 0)
+light_energy = 2.778
