@@ -1,17 +1,23 @@
 extends Node
 
 var progress := 0.0
+var up_down := 0.0
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_pressed("ui_up"):
-		progress += delta * 1.0
-	if Input.is_action_pressed("ui_down"):
-		progress -= delta * 1.0
+	if not Input.is_action_pressed("ui_down") and not Input.is_action_pressed("ui_up"):
+		up_down = 0.0
+	elif Input.is_action_just_pressed("ui_down"):
+		up_down = -1.0
+	elif Input.is_action_just_pressed("ui_up"):
+		up_down = 1.0
+	elif Input.is_action_just_released("ui_down"):
+		up_down = 1.0
+	elif  Input.is_action_just_released("ui_up"):
+		up_down = -1.0
+	progress += delta * up_down
 	
 func _input(event):
 	if event is InputEventKey:

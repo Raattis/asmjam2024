@@ -30,12 +30,11 @@ mesh = SubResource("CylinderMesh_23bwr")
 skeleton = NodePath("../..")
 script = ExtResource("1_bpcbc")
 
-[node name="chicken" type="RigidBody3D" parent="."]
+[node name="chicken" type="CharacterBody3D" parent="."]
 axis_lock_linear_z = true
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
-linear_damp = 7.071
 script = ExtResource("2_l67pb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="chicken"]
