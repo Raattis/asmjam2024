@@ -25,13 +25,12 @@ transform = Transform3D(-2.18557e-06, -50, 0, 50, -2.18557e-06, 0, 0, 0, 50, 0, 
 shape = SubResource("CylinderShape3D_ahj5n")
 
 [node name="terrain_mesh" type="MeshInstance3D" parent="terrain"]
-transform = Transform3D(-2.18557e-06, -50, 0, 50, -2.18557e-06, 0, 0, 0, 50, 0, -23.5756, -10.6083)
+transform = Transform3D(-6.55671e-06, -150, 0, 150, -6.55671e-06, 0, 0, 0, 150, 0, -54.2216, -52.9122)
 mesh = SubResource("CylinderMesh_23bwr")
 skeleton = NodePath("../..")
 script = ExtResource("1_bpcbc")
 
 [node name="chicken" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.956767, 0.788198)
 axis_lock_linear_z = true
 axis_lock_angular_x = true
 axis_lock_angular_y = true
@@ -47,7 +46,7 @@ mesh = SubResource("CapsuleMesh_38w4r")
 skeleton = NodePath("../..")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.28281, 18.2203)
+transform = Transform3D(1, 0, 0, 0, 0.965763, 0.259426, 0, -0.259426, 0.965763, 2.17996, 20.0928, 25.2266)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.0627905, 0.998027, 0, -0.998027, 0.0627905, 0, 13.119, 0)
