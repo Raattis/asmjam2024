@@ -4,7 +4,6 @@
 [ext_resource type="Script" path="res://terrain.gd" id="1_bpcbc"]
 [ext_resource type="Script" path="res://chicken.gd" id="2_l67pb"]
 [ext_resource type="Script" path="res://sky_color.gd" id="4_edx5v"]
-[ext_resource type="Script" path="res://nugget.gd" id="5_06s66"]
 [ext_resource type="PackedScene" uid="uid://fn4ue284pmgv" path="res://motion_blur/motion_blur.tscn" id="5_l0w1x"]
 [ext_resource type="PackedScene" uid="uid://tgbf0b54j56u" path="res://feather_particles.tscn" id="6_4433p"]
 [ext_resource type="Shader" path="res://motion_blur/moblur_shader.gdshader" id="6_enfr1"]
@@ -44,6 +43,21 @@ shader_parameter/angular_velocity = Vector3(0, 0, 0)
 shader_parameter/iteration_count = 10
 shader_parameter/intensity = 0.324
 shader_parameter/startRadius = 4.78
+
+[sub_resource type="GDScript" id="GDScript_knj1p"]
+script/source = "class_name Nugget
+extends Node3D
+
+var progress_position := 0.1
+
+func _ready():
+	pass
+
+func _process(_delta):
+	var p := GameState.progress_to_pos(progress_position)
+	position.z = p.z
+	position.y = p.y
+"
 
 [node name="Node3D" type="Node3D"]
 
@@ -106,7 +120,7 @@ transform = Transform3D(1, 0, 0, 0, 0.0627905, 0.998027, 0, -0.998027, 0.0627905
 light_energy = 2.778
 
 [node name="nugget" type="Node3D" parent="."]
-script = ExtResource("5_06s66")
+script = SubResource("GDScript_knj1p")
 
 [node name="feather_particles" parent="." instance=ExtResource("6_4433p")]
 unique_name_in_owner = true

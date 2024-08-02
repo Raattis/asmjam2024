@@ -10,6 +10,7 @@ const progress_mult := PI * 2.0
 const progress_speed := 0.7 / progress_mult
 var progress_velocity : float = 0.0
 var stun_timer : float = 0.0
+var nugs_eaten : Array[int] = []
 
 const lane_count := 30
 const lane_width := 1.0 / lane_count

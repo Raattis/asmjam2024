@@ -81,8 +81,8 @@ func _process(delta : float):
 			apply_force(Vector3(1,0,0) * body.speed * collision_force)
 			apply_torque_impulse(Vector3.FORWARD * clamp(body.speed * 0.1, -10.0, 10.0) + Vector3.RIGHT * knock_progress * 3.0)
 			print("car")
-		elif body is Nugget:
-			print("nugget")
+		elif body is Nuggets:
+			body.collect()
 		else:
-			print("other")
+			print("other: ", body.name)
 			
