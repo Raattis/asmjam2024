@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://yxi7tgpmw6af"]
+
+[ext_resource type="Script" path="res://lane_markers.gd" id="1_458na"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r78dh"]
+albedo_color = Color(0.285543, 0.34, 0.2346, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qb2rq"]
+material = SubResource("StandardMaterial3D_r78dh")
+size = Vector2(16, 200)
+
+[node name="grass" type="Node3D"]
+script = ExtResource("1_458na")
+
+[node name="Node3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999998, 0, 0.00174533, 0, 1, 0, -0.00174533, 0, 0.999998, 0, 0, 0)
+mesh = SubResource("PlaneMesh_qb2rq")

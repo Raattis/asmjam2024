@@ -9,7 +9,8 @@ func _process(delta):
 	var p := GameState.progress_to_pos(progress_position)
 	position.z = p.z
 	position.y = p.y
-	position.x = position.x + delta * speed
+	var progressive_speed_increasse := clampf(GameState.progress, 0.2, 10.0)
+	position.x = position.x + delta * speed * progressive_speed_increasse
 	if position.x > GameState.terrain_scale.x * 0.9:
 		position.x = -GameState.terrain_scale.x * 0.8
 	elif position.x < -GameState.terrain_scale.x * 0.9:

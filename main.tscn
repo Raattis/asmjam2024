@@ -1,10 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://b37h1j6h5qy1a"]
+[gd_scene load_steps=20 format=3 uid="uid://b37h1j6h5qy1a"]
 
 [ext_resource type="Texture2D" uid="uid://c0fcmvjgpqkyb" path="res://icon.svg" id="1_8hijk"]
 [ext_resource type="Script" path="res://terrain.gd" id="1_bpcbc"]
 [ext_resource type="Script" path="res://chicken.gd" id="2_l67pb"]
+[ext_resource type="Script" path="res://sky_color.gd" id="4_edx5v"]
 [ext_resource type="Script" path="res://nugget.gd" id="5_06s66"]
+[ext_resource type="PackedScene" uid="uid://fn4ue284pmgv" path="res://motion_blur/motion_blur.tscn" id="5_l0w1x"]
 [ext_resource type="PackedScene" uid="uid://tgbf0b54j56u" path="res://feather_particles.tscn" id="6_4433p"]
+[ext_resource type="Shader" path="res://motion_blur/moblur_shader.gdshader" id="6_enfr1"]
 [ext_resource type="Script" path="res://car_spawner.gd" id="7_gqins"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xgod4"]
@@ -28,7 +31,19 @@ radius = 2.0
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_38w4r"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_t6aq4"]
-radius = 0.6
+
+[sub_resource type="Environment" id="Environment_1nknf"]
+background_mode = 1
+background_color = Color(0.74, 0.974, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ko1bm"]
+render_priority = -1
+shader = ExtResource("6_enfr1")
+shader_parameter/linear_velocity = Vector3(0, 0, 0)
+shader_parameter/angular_velocity = Vector3(0, 0, 0)
+shader_parameter/iteration_count = 10
+shader_parameter/intensity = 0.324
+shader_parameter/startRadius = 4.78
 
 [node name="Node3D" type="Node3D"]
 
@@ -52,6 +67,7 @@ layers = 2
 mesh = SubResource("BoxMesh_cce7f")
 
 [node name="chicken" type="RigidBody3D" parent="."]
+unique_name_in_owner = true
 physics_interpolation_mode = 1
 disable_mode = 2
 axis_lock_linear_y = true
@@ -76,7 +92,14 @@ max_results = 1
 collision_mask = 4
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.919863, 0.392241, 0, -0.392241, 0.919863, 0, 14.6127, 13.5414)
+transform = Transform3D(1, 0, 0, 0, 0.948085, 0.318016, 0, -0.318016, 0.948085, 0, 27.5379, 43.8529)
+environment = SubResource("Environment_1nknf")
+fov = 39.4
+script = ExtResource("4_edx5v")
+colors = Array[Color]([Color(0.741176, 0.972549, 1, 1), Color(0.519141, 0.607796, 0.439249, 1), Color(0.828227, 0.6228, 0.374376, 1), Color(0.727954, 0.276327, 0.261096, 1), Color(0.356348, 0.18603, 0.0965563, 1), Color(0.139951, 0.00425202, 9.02452e-09, 1), Color(0.640418, 0, 0.137289, 1)])
+
+[node name="motion_blur" parent="Camera3D" instance=ExtResource("5_l0w1x")]
+surface_material_override/0 = SubResource("ShaderMaterial_ko1bm")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.0627905, 0.998027, 0, -0.998027, 0.0627905, 0, 13.119, 0)
@@ -87,12 +110,15 @@ script = ExtResource("5_06s66")
 
 [node name="feather_particles" parent="." instance=ExtResource("6_4433p")]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10000, 0)
 
 [node name="feather_particles2" parent="." instance=ExtResource("6_4433p")]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10000, 0)
 
 [node name="feather_particles3" parent="." instance=ExtResource("6_4433p")]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10000, 0)
 
 [node name="car_spawner" type="Node" parent="."]
 script = ExtResource("7_gqins")

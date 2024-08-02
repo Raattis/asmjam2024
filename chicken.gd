@@ -1,6 +1,6 @@
 extends RigidBody3D
 
-const move_force := 300.0
+const move_force := 500.0
 var left_right := 0.0
 var up_down := 0.0
 
@@ -9,12 +9,12 @@ var knock_progress := 1.0
 var feather_particles_index := 1
 
 @onready var car_collision_cast = $car_collision_cast
-const collision_force := 20.0
+const collision_force := 50.0
 
 func _ready():
 	contact_monitor = true
 
-func _process(delta):
+func _process(delta : float):
 	if not Input.is_action_pressed("ui_left") and not Input.is_action_pressed("ui_right"):
 		left_right = 0.0
 	elif Input.is_action_just_pressed("ui_left"):
@@ -37,11 +37,15 @@ func _process(delta):
 	elif  Input.is_action_just_released("ui_up"):
 		up_down = -1.0
 
+	var lerp_factor := 1.0 - pow(0.1, delta)
+	var lerp_factor_fast := 1.0 - pow(0.001, delta)
 	if not GameState.is_stunned():
-		GameState.progress_velocity = lerp(GameState.progress_velocity, GameState.progress_speed * up_down, 1.0 - pow(0.1, delta))
+		GameState.progress_velocity = lerp(GameState.progress_velocity, GameState.progress_speed * up_down, lerp_factor)
+		angular_damp = lerp(angular_damp, 5.0, lerp_factor)
+		rotation = rotation.slerp(Vector3.ZERO, lerp_factor_fast)
 	else:
 		GameState.progress_velocity = knock_progress
-		knock_progress = lerp(knock_progress, 0.0, 1.0 - pow(0.1, delta))
+		knock_progress = lerp(knock_progress, 0.0, lerp_factor)
  
 	apply_force(Vector3(left_right, 0,0) * move_force)
 	if position.x > GameState.terrain_scale.x * 0.8:
@@ -51,10 +55,14 @@ func _process(delta):
 	if Input.is_key_pressed(KEY_R):
 		position.x = 0
 
+	const border := 25.0
+	if position.x < -border or position.x > border:
+		apply_force(Vector3(-position.x * 500.0,0,0))
+		apply_torque_impulse(Vector3.FORWARD * clamp(position.x * 0.1, -10.0, 10.0) + Vector3.RIGHT * knock_progress * 3.0)
+
 	if car_collision_cast.is_colliding():
 		var body : Node3D = car_collision_cast.get_collider(0)
 		if body is Car:
-			apply_force(Vector3(1,0,0) * body.speed * collision_force)
 			feather_particles_index = (feather_particles_index + 1) % len(feather_particles)
 			var particles : CPUParticles3D = feather_particles[feather_particles_index]
 			if not particles.emitting:
@@ -64,8 +72,12 @@ func _process(delta):
 					particles.rotation.y = 0
 				else:
 					particles.rotation.y = PI
-			knock_progress = (body.position.z - position.z) * 1.0
+			knock_progress = (body.position.z - position.z) * 0.1
 			GameState.stun_timer = 0.5
+			angular_damp = 0.01
+			apply_force(Vector3(1,0,0) * body.speed * collision_force)
+			apply_torque_impulse(Vector3.FORWARD * clamp(body.speed * 0.1, -10.0, 10.0) + Vector3.RIGHT * knock_progress * 3.0)
+			print("car")
 		elif body is Nugget:
 			print("nugget")
 		else:
