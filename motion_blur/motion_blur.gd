@@ -1,4 +1,3 @@
-@tool
 extends MeshInstance3D
 
 var cam_pos_prev = Vector3()
@@ -6,7 +5,6 @@ var cam_rot_prev = Quaternion()
 var blur_amount : float = 0.0
 
 func _process(delta):
-	
 	var velocity = Vector3(%chicken.linear_velocity.x * 0.01, GameState.progress_velocity, GameState.progress_velocity) * 100.0
 	var ang_vel := Vector3(GameState.progress_velocity,0,0)
 	
