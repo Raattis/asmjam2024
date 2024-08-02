@@ -45,7 +45,7 @@ func spawn_lane(lane_index: int):
 		var car := car_scene.instantiate()
 		car.progress_position = progress + GameState.lane_width * 0.1 * spawn_random.randf_range(-1, 1)
 		car.speed = speed
-		offset += car.get_node("MeshInstance3D").scale.z * spawn_random.randf_range(1.75, 2.0)
+		offset += car.get_node("MeshInstance3D").scale.z * spawn_random.randf_range(3.5, 6.0)
 		#car.position.x += fmod(offset, GameState.terrain_scale.x * 1.0) - GameState.terrain_scale.x * 0.5
 		car.position.y = 10000
 		add_child(car)

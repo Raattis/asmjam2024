@@ -7,8 +7,8 @@ var lane_index := -99
 
 func _process(delta):
 	var p := GameState.progress_to_pos(progress_position)
-	position.z = p.z + 0.1
-	position.y = p.y + 0.1
+	position.z = p.z + 0.5
+	position.y = p.y + 1
 
 func collect():
 	if collected:

@@ -15,6 +15,10 @@ func _ready():
 	contact_monitor = true
 
 func _process(delta : float):
+	if GameState.victory:
+		position.x = lerp(position.x, 0.0, 1.0 - pow(0.001, delta))
+		return
+	
 	if not Input.is_action_pressed("ui_left") and not Input.is_action_pressed("ui_right"):
 		left_right = 0.0
 	elif Input.is_action_just_pressed("ui_left"):

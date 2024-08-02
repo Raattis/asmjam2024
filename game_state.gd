@@ -15,6 +15,10 @@ var nugs_eaten : Array[int] = []
 const lane_count := 30
 const lane_width := 1.0 / lane_count
 
+var victory := false
+const victory_limit := 5.5
+const end_limit := 15.0
+
 func progress_to_pos(progress_pos : float) -> Vector3:
 	var angle : float = (progress_pos - GameState.progress) * progress_mult
 	var p := Vector3.ZERO
@@ -29,10 +33,19 @@ func is_stunned():
 	return stun_timer > 0.0
 
 func _process(delta):
+	if victory:
+		progress += delta * clamp(progress / victory_limit, 1.0, 5.0)
+		if progress > end_limit:
+			pass # fade to white
+		return
+	
 	if stun_timer > 0.0:
 		stun_timer -= delta
 
 	progress += delta * progress_velocity
+	
+	if progress > victory_limit:
+		victory = true
 	
 func _input(event):
 	if event is InputEventKey:

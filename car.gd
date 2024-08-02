@@ -11,10 +11,11 @@ func _process(delta):
 	position.z = p.z
 	position.y = p.y
 	var x = offset_x + Time.get_ticks_msec() / 1000.0 * speed
-	if x > GameState.terrain_scale.x * 0.9:
-		x = fmod(x, -GameState.terrain_scale.x * 1.6) - GameState.terrain_scale.x * 0.8
-	elif x < -GameState.terrain_scale.x * 0.9:
-		x = -fmod(-x, GameState.terrain_scale.x * 1.6) + GameState.terrain_scale.x * 0.8
+	const w := 1.0
+	if x > 0:
+		x = fmod(x, -GameState.terrain_scale.x * w) - GameState.terrain_scale.x * w * 0.5
+	elif x < 0:
+		x = -fmod(-x, GameState.terrain_scale.x * w) + GameState.terrain_scale.x * w * 0.5
 	position.x = x
 
 	var up := global_position - GameState.terrain_pivot * Vector3(0,1,1)
