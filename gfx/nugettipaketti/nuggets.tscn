@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bvmrummq25v3u"]
 
 [ext_resource type="Script" path="res://gfx/nugettipaketti/nuggets.gd" id="1_o38kf"]
-[ext_resource type="PackedScene" uid="uid://d12tj3vbdxnn8" path="res://gfx/nugettipaketti/nugettipaketti.glb" id="2_w0geg"]
+[ext_resource type="PackedScene" uid="uid://cmebvupi4crbj" path="res://gfx/nugettipaketti/nugettipaketti.glb" id="2_w0geg"]
 [ext_resource type="Script" path="res://gfx/nugettipaketti/nugettipaketti.gd" id="3_mjbdp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_a18jl"]
