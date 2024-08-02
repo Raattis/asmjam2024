@@ -19,5 +19,5 @@ script = ExtResource("1_64n8r")
 physics_interpolation_mode = 1
 shape = SubResource("BoxShape3D_0mamg")
 
-[node name="auto_sedan" parent="." instance=ExtResource("2_6urgd")]
-transform = Transform3D(-2.975, 0, -2.60083e-07, 0, 2.975, 0, 2.60083e-07, 0, -2.975, 0, 0, 0)
+[node name="MeshInstance3D" parent="." instance=ExtResource("2_6urgd")]
+transform = Transform3D(2.975, 0, 0, 0, 2.975, 0, 0, 0, 2.975, 0, 0, 0)
