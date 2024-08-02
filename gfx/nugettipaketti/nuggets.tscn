@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvmrummq25v3u"]
+
+[ext_resource type="Script" path="res://gfx/nugettipaketti/nuggets.gd" id="1_o38kf"]
+[ext_resource type="PackedScene" uid="uid://d12tj3vbdxnn8" path="res://gfx/nugettipaketti/nugettipaketti.glb" id="2_w0geg"]
+[ext_resource type="Script" path="res://gfx/nugettipaketti/nugettipaketti.gd" id="3_mjbdp"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_a18jl"]
+radius = 3.0
+
+[node name="nuggets" type="AnimatableBody3D"]
+collision_layer = 4
+collision_mask = 4
+sync_to_physics = false
+script = ExtResource("1_o38kf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58811, 0)
+shape = SubResource("SphereShape3D_a18jl")
+
+[node name="nugettipaketti" parent="." instance=ExtResource("2_w0geg")]
+transform = Transform3D(2.865, 0, 0, 0, 2.865, 0, 0, 0, 2.865, 0, 0.508016, 0)
+script = ExtResource("3_mjbdp")
