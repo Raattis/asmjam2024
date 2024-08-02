@@ -13,3 +13,16 @@ export_presets.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+# Krita 
+*.kra~
+*.png~
+
+# Blender
+*.blend1
+*.blend2
+*.blend3
+*.blend4
+*.blend5
+*.blend6
+*.blend7
