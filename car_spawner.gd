@@ -8,29 +8,29 @@ var lanes := {}
 func spawn_lane(lane_index: int):
 	lanes[lane_index] = []
 	
-	if lane_index < 0:
-		var speed : float = 50.0 + lane_index * 1.0
-		var progress : float = lane_index * 1.0 / GameState.lane_count
-		var lane : LaneMarkers = grass.instantiate()
+	var speed : float = clamp(50.0 + lane_index * 0.5, 1.0, 300.0)
+	var progress : float = lane_index * 1.0 / GameState.lane_count
+	
+	if lane_index >= 0 and lane_index <= 76:
+		var lane : LaneMarkers = lane_markers.instantiate()
 		lane.progress_position = progress - GameState.lane_width * 0.5
 		lane.position.y = 100000
 		add_child(lane)
 		lanes[lane_index].append(lane)
+	else:
+		var gr : LaneMarkers = grass.instantiate()
+		gr.progress_position = progress - GameState.lane_width * 0.5
+		gr.position.y = 100000
+		add_child(gr)
+		lanes[lane_index].append(gr)
+
+	if lane_index < 0 or lane_index > 75:
 		return
-	
-	var speed : float = 50.0 + lane_index * 1.0
-	var progress : float = lane_index * 1.0 / GameState.lane_count
-	var lane : LaneMarkers = lane_markers.instantiate()
-	lane.progress_position = progress - GameState.lane_width * 0.5
-	lane.position.y = 100000
-	add_child(lane)
-	lanes[lane_index].append(lane)
 	
 	var spawn_random := RandomNumberGenerator.new()
 	spawn_random.seed = lane_index
 	var offset := spawn_random.randf_range(0, GameState.terrain_scale.x)
-	for j in range(spawn_random.randi_range(1 + 155 / speed, 6)):
-		#for j in range(0):
+	for j in range(spawn_random.randi_range(1 + 155 / speed, 6 + progress)):
 		var car := car_scene.instantiate()
 		car.progress_position = progress + GameState.lane_width * 0.1 * spawn_random.randf_range(-1, 1)
 		car.speed = speed

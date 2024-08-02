@@ -13,7 +13,7 @@ func _process(delta):
 	var a : float = blur_amount
 	var b : float = GameState.stun_timer
 	blur_amount = lerp(a, b, 1.0 - pow(0.01, delta))
-	var min_amount : float = clamp(GameState.progress - 1.0, 0.0, 0.1)
+	var min_amount : float = clamp(GameState.progress - GameState.color_length * 6.5, 0.0, 1.0) / 10.0
 	if blur_amount < min_amount:
 		blur_amount = min_amount
 	

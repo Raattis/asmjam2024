@@ -47,6 +47,9 @@ func _process(delta : float):
 		GameState.progress_velocity = knock_progress
 		knock_progress = lerp(knock_progress, 0.0, lerp_factor)
  
+	if Input.is_key_pressed(KEY_I) and Input.is_key_pressed(KEY_P):
+		GameState.progress_velocity = GameState.progress_speed * 5
+
 	apply_force(Vector3(left_right, 0,0) * move_force)
 	if position.x > GameState.terrain_scale.x * 0.8:
 		position.x = 0
@@ -60,7 +63,7 @@ func _process(delta : float):
 		apply_force(Vector3(-position.x * 500.0,0,0))
 		apply_torque_impulse(Vector3.FORWARD * clamp(position.x * 0.1, -10.0, 10.0) + Vector3.RIGHT * knock_progress * 3.0)
 
-	if car_collision_cast.is_colliding():
+	if car_collision_cast.is_colliding() and not Input.is_key_pressed(KEY_I):
 		var body : Node3D = car_collision_cast.get_collider(0)
 		if body is Car:
 			feather_particles_index = (feather_particles_index + 1) % len(feather_particles)
