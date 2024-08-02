@@ -1,11 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://b37h1j6h5qy1a"]
+[gd_scene load_steps=15 format=3 uid="uid://b37h1j6h5qy1a"]
 
 [ext_resource type="Texture2D" uid="uid://c0fcmvjgpqkyb" path="res://icon.svg" id="1_8hijk"]
 [ext_resource type="Script" path="res://terrain.gd" id="1_bpcbc"]
 [ext_resource type="Script" path="res://chicken.gd" id="2_l67pb"]
-[ext_resource type="PackedScene" uid="uid://owpltm750pn" path="res://car.tscn" id="4_1cv0v"]
 [ext_resource type="Script" path="res://nugget.gd" id="5_06s66"]
-[ext_resource type="Texture2D" uid="uid://8t6qpc7wifij" path="res://gfx/feather.png" id="6_0r44n"]
+[ext_resource type="PackedScene" uid="uid://tgbf0b54j56u" path="res://feather_particles.tscn" id="6_4433p"]
 [ext_resource type="Script" path="res://car_spawner.gd" id="7_gqins"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xgod4"]
@@ -28,15 +27,8 @@ radius = 2.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_38w4r"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1xfuq"]
-albedo_texture = ExtResource("6_0r44n")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_kd261"]
-material = SubResource("StandardMaterial3D_1xfuq")
-
-[sub_resource type="Curve" id="Curve_ros6i"]
-_data = [Vector2(0, 0.010989), 0.0, 0.0, 0, 0, Vector2(0.146067, 1), 0.0, 0.0, 0, 0, Vector2(0.876405, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.173871, 0.0, 0, 0]
-point_count = 4
+[sub_resource type="SphereShape3D" id="SphereShape3D_t6aq4"]
+radius = 0.6
 
 [node name="Node3D" type="Node3D"]
 
@@ -77,6 +69,12 @@ shape = SubResource("SphereShape3D_sw5c5")
 mesh = SubResource("CapsuleMesh_38w4r")
 skeleton = NodePath("../..")
 
+[node name="car_collision_cast" type="ShapeCast3D" parent="chicken"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_t6aq4")
+max_results = 1
+collision_mask = 4
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.919863, 0.392241, 0, -0.392241, 0.919863, 0, 14.6127, 13.5414)
 
@@ -84,72 +82,17 @@ transform = Transform3D(1, 0, 0, 0, 0.919863, 0.392241, 0, -0.392241, 0.919863, 
 transform = Transform3D(1, 0, 0, 0, 0.0627905, 0.998027, 0, -0.998027, 0.0627905, 0, 13.119, 0)
 light_energy = 2.778
 
-[node name="car" parent="." instance=ExtResource("4_1cv0v")]
-
 [node name="nugget" type="Node3D" parent="."]
 script = ExtResource("5_06s66")
 
-[node name="feather_particles" type="CPUParticles3D" parent="."]
+[node name="feather_particles" parent="." instance=ExtResource("6_4433p")]
 unique_name_in_owner = true
-emitting = false
-amount = 50
-lifetime = 0.5
-one_shot = true
-explosiveness = 0.99
-randomness = 0.37
-lifetime_randomness = 0.03
-mesh = SubResource("PlaneMesh_kd261")
-emission_shape = 1
-emission_sphere_radius = 1.0
-direction = Vector3(4, 2, 2)
-gravity = Vector3(0, -50, 0)
-initial_velocity_min = 20.2
-initial_velocity_max = 40.41
-damping_min = 1.01
-damping_max = 2.02
-scale_amount_curve = SubResource("Curve_ros6i")
 
-[node name="feather_particles2" type="CPUParticles3D" parent="."]
+[node name="feather_particles2" parent="." instance=ExtResource("6_4433p")]
 unique_name_in_owner = true
-emitting = false
-amount = 50
-lifetime = 0.5
-one_shot = true
-explosiveness = 0.99
-randomness = 0.37
-lifetime_randomness = 0.03
-mesh = SubResource("PlaneMesh_kd261")
-emission_shape = 1
-emission_sphere_radius = 1.0
-direction = Vector3(4, 2, 2)
-gravity = Vector3(0, -50, 0)
-initial_velocity_min = 20.2
-initial_velocity_max = 40.41
-damping_min = 1.01
-damping_max = 2.02
-scale_amount_curve = SubResource("Curve_ros6i")
 
-[node name="feather_particles3" type="CPUParticles3D" parent="."]
+[node name="feather_particles3" parent="." instance=ExtResource("6_4433p")]
 unique_name_in_owner = true
-emitting = false
-amount = 50
-lifetime = 0.5
-one_shot = true
-explosiveness = 0.99
-randomness = 0.37
-lifetime_randomness = 0.03
-mesh = SubResource("PlaneMesh_kd261")
-emission_shape = 1
-emission_sphere_radius = 1.0
-direction = Vector3(4, 2, 2)
-gravity = Vector3(0, -50, 0)
-initial_velocity_min = 20.2
-initial_velocity_max = 40.41
-damping_min = 1.01
-damping_max = 2.02
-scale_amount_curve = SubResource("Curve_ros6i")
 
 [node name="car_spawner" type="Node" parent="."]
 script = ExtResource("7_gqins")
-
-[connection signal="body_entered" from="chicken" to="chicken" method="_on_body_entered"]

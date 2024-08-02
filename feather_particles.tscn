@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://tgbf0b54j56u"]
+
+[ext_resource type="Texture2D" uid="uid://8t6qpc7wifij" path="res://gfx/feather.png" id="1_ebvge"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1xfuq"]
+albedo_texture = ExtResource("1_ebvge")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kd261"]
+material = SubResource("StandardMaterial3D_1xfuq")
+
+[sub_resource type="Curve" id="Curve_ros6i"]
+_data = [Vector2(0, 0.010989), 0.0, 0.0, 0, 0, Vector2(0.146067, 1), 0.0, 0.0, 0, 0, Vector2(0.876405, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.173871, 0.0, 0, 0]
+point_count = 4
+
+[node name="feather_particles" type="CPUParticles3D"]
+emitting = false
+amount = 50
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.99
+randomness = 0.37
+lifetime_randomness = 0.03
+mesh = SubResource("PlaneMesh_kd261")
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(1, 2, 2)
+gravity = Vector3(0, -50, 0)
+initial_velocity_min = 20.2
+initial_velocity_max = 40.41
+damping_min = 1.01
+damping_max = 2.02
+scale_amount_curve = SubResource("Curve_ros6i")

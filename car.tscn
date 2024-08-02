@@ -4,19 +4,22 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0mamg"]
 margin = 0.601
-size = Vector3(2.5, 5, 5)
+size = Vector3(4.195, 6.035, 8.325)
 
 [sub_resource type="BoxMesh" id="BoxMesh_3t4rd"]
 
 [node name="car" type="AnimatableBody3D"]
 physics_interpolation_mode = 1
-transform = Transform3D(-4.38629e-08, -2.96078e-08, 1, 0.791384, 0.61132, 2.98023e-08, -0.61132, 0.791383, 0, 0, 4.70869, -5.19186)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+collision_layer = 4
+collision_mask = 4
 sync_to_physics = false
 script = ExtResource("1_64n8r")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+physics_interpolation_mode = 1
 shape = SubResource("BoxShape3D_0mamg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 5, 0, 0.444363, 0)
+transform = Transform3D(4.194, 0, 0, 0, 3.355, 0, 0, 0, 8.387, 0, 1.67751, 0)
 mesh = SubResource("BoxMesh_3t4rd")

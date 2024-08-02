@@ -7,7 +7,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	rotation.x = GameState.progress * 100 / scale.z
+	rotation.x = GameState.progress * PI * 2.0
 	#position.z = -scale.z * 0.45
 	#position.y = -scale.y * 0.24
 	position.x = 0
