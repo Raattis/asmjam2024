@@ -29,7 +29,7 @@ func spawn_lane(lane_index: int):
 		return
 	
 	var nug_random := RandomNumberGenerator.new()
-	if lane_index % 5 == 0 and not lane_index in GameState.nugs_eaten:
+	if lane_index % 3 == 0 and not lane_index in GameState.nugs_eaten:
 		var nugs : Node3D = nuggets.instantiate()
 		nugs.progress_position = progress + GameState.lane_width * 0.2 * nug_random.randf_range(-1,1)
 		nugs.lane_index = lane_index
@@ -46,11 +46,12 @@ func spawn_lane(lane_index: int):
 		car.progress_position = progress + GameState.lane_width * 0.1 * spawn_random.randf_range(-1, 1)
 		car.speed = speed
 		offset += car.get_node("MeshInstance3D").scale.z * spawn_random.randf_range(1.75, 2.0)
-		car.position.x += fmod(offset, GameState.terrain_scale.x * 1.0) - GameState.terrain_scale.x * 0.5
+		#car.position.x += fmod(offset, GameState.terrain_scale.x * 1.0) - GameState.terrain_scale.x * 0.5
 		car.position.y = 10000
 		add_child(car)
 		if lane_index % 2 == 0:
 			car.speed *= -1
+		car.offset_x = offset + 1000 * car.speed
 		lanes[lane_index].append(car)
 
 func _process(delta):

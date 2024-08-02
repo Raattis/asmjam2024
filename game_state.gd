@@ -1,7 +1,7 @@
 class_name GameStateT
 extends Node
 
-var progress := 0.07
+var progress := -0.1
 const color_length := 0.5
 
 var terrain_pivot : Vector3 = Vector3.ZERO
