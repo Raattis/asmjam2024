@@ -3,7 +3,7 @@ extends AnimatableBody3D
 
 var progress_position := 0.0
 const progress_mult := 0.10620
-var speed := 500
+var speed := 200
 
 func _process(delta):
 	var p := GameState.progress_to_pos(progress_position)

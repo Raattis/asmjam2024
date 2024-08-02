@@ -1,9 +1,9 @@
 extends RigidBody3D
 
-const move_force := 100.0
+const move_force := 300.0
 var left_right := 0.0
-@onready var feather_particles = %feather_particles
-
+@onready var feather_particles = [%feather_particles, %feather_particles2, %feather_particles3]
+var feather_particles_index := 1
 
 func _ready():
 	contact_monitor = true
@@ -30,13 +30,15 @@ func _process(_delta):
 
 func _on_body_entered(body):
 	if body is Car:
-		if not feather_particles.emitting:
-			feather_particles.global_position = global_position
-			feather_particles.emitting = true
+		feather_particles_index = (feather_particles_index + 1) % len(feather_particles)
+		var particles : CPUParticles3D = feather_particles[feather_particles_index]
+		if not particles.emitting:
+			particles.global_position = global_position
+			particles.emitting = true
 			if body.speed > 0:
-				feather_particles.rotation.y = 0
+				particles.rotation.y = 0
 			else:
-				feather_particles.rotation.y = PI
+				particles.rotation.y = PI
 	elif body is Nugget:
 		print("nugget")
 	else:
