@@ -21,11 +21,21 @@ GameState="*res://game_state.tscn"
 
 [display]
 
+window/size/viewport_width=400
+window/size/viewport_height=400
+window/size/initial_position_type=0
+window/size/initial_position=Vector2i(1500, 600)
 window/size/always_on_top=true
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/anthonyec.camera_preview/plugin.cfg")
+
+[physics]
+
+common/physics_ticks_per_second=120
+common/max_physics_steps_per_frame=100
+common/physics_interpolation=true
 
 [rendering]
 
