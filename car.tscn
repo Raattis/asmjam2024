@@ -1,12 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://owpltm750pn"]
 
 [ext_resource type="Script" path="res://car.gd" id="1_64n8r"]
+[ext_resource type="PackedScene" uid="uid://bk4lhmxxblrvd" path="res://gfx/auto/sedan/auto.sedan.glb" id="2_6urgd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0mamg"]
 margin = 0.601
 size = Vector3(4.195, 6.035, 8.325)
-
-[sub_resource type="BoxMesh" id="BoxMesh_3t4rd"]
 
 [node name="car" type="AnimatableBody3D"]
 physics_interpolation_mode = 1
@@ -20,6 +19,5 @@ script = ExtResource("1_64n8r")
 physics_interpolation_mode = 1
 shape = SubResource("BoxShape3D_0mamg")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(4.194, 0, 0, 0, 3.355, 0, 0, 0, 8.387, 0, 1.67751, 0)
-mesh = SubResource("BoxMesh_3t4rd")
+[node name="auto_sedan" parent="." instance=ExtResource("2_6urgd")]
+transform = Transform3D(-2.975, 0, -2.60083e-07, 0, 2.975, 0, 2.60083e-07, 0, -2.975, 0, 0, 0)
