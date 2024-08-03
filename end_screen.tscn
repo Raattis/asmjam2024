@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=3 uid="uid://dumgv4glro4qu"]
+
+[ext_resource type="Texture2D" uid="uid://c3v35x70xhq1g" path="res://gfx/chicken_face_texture.png" id="1_orw02"]
+[ext_resource type="Script" path="res://halo_bob_animation.gd" id="2_m8tv4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2s16b"]
+albedo_texture = ExtResource("1_orw02")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ftsy7"]
+material = SubResource("StandardMaterial3D_2s16b")
+
+[sub_resource type="Animation" id="Animation_gauo7"]
+resource_name = "bob"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("halo_bob_animation/halo")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.21664, 0, 0.8, 1, 0, 1.12511, 0, 1.6, 1, 0, 1.217, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("halo_bob_animation/halo")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.0797118, 0, 0, 0.996818, 0.366667, 1, 0.0563647, 0.704857, -0.0563647, 0.704857, 0.766667, 1, 0.0206309, 0.962852, -0.0769957, 0.257995, 1.13333, 1, 0.0440846, -0.830497, 0.0664117, 0.55129)
+
+[sub_resource type="Animation" id="Animation_k7oi0"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("halo_bob_animation/halo")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.21664, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r1sgb"]
+_data = {
+"RESET": SubResource("Animation_k7oi0"),
+"bob": SubResource("Animation_gauo7")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qwg7o"]
+albedo_color = Color(0.94, 0.94, 0.3102, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_7rgrp"]
+material = SubResource("StandardMaterial3D_qwg7o")
+inner_radius = 0.4
+outer_radius = 0.5
+
+[sub_resource type="Environment" id="Environment_3r1re"]
+background_mode = 1
+background_color = Color(0.4992, 0.59776, 0.64, 1)
+
+[node name="end_screen" type="Node3D"]
+
+[node name="end_chicken" type="Node3D" parent="."]
+
+[node name="chicken_mesh" type="MeshInstance3D" parent="end_chicken"]
+mesh = SubResource("CapsuleMesh_ftsy7")
+
+[node name="halo_bob_animation" type="AnimationPlayer" parent="end_chicken"]
+libraries = {
+"": SubResource("AnimationLibrary_r1sgb")
+}
+script = ExtResource("2_m8tv4")
+
+[node name="halo" type="MeshInstance3D" parent="end_chicken/halo_bob_animation"]
+transform = Transform3D(1, 0, 0, 0, 0.987292, -0.158916, 0, 0.158916, 0.987292, 0, 1.21664, 0)
+mesh = SubResource("TorusMesh_7rgrp")
+skeleton = NodePath("../../..")
+
+[node name="end_camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.974059, 0.226294, 0, -0.226294, 0.974059, -0.0359464, 0.727157, 1.77371)
+environment = SubResource("Environment_3r1re")
+
+[node name="end_light" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.967612, -0.188637, 0.167757, 0, 0.664539, 0.747253, -0.252441, -0.723051, 0.643017, 0, 3.65316, 1.22575)
+
+[node name="end_light2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.967612, -0.188637, 0.167757, 0.243235, 0.518858, -0.819526, 0.0675511, 0.833788, 0.547937, 1.07537, 0.304663, 2.47064)
+light_energy = 0.2
