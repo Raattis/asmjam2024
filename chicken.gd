@@ -18,6 +18,8 @@ var animation_progress := 0.0
 const nugget_trail = preload("res://nugget_trail.tscn")
 var nugger_trail_head : NuggetTrail = null
 
+var effet_random := RandomNumberGenerator.new()
+
 func _ready():
 	contact_monitor = true
 
@@ -72,7 +74,7 @@ func _process(delta : float):
 	const border := 25.0
 	if position.x < -border or position.x > border:
 		apply_force(Vector3(-position.x * 500.0,0,0))
-		apply_torque_impulse(Vector3.FORWARD * clamp(position.x * 0.1, -10.0, 10.0) + Vector3.RIGHT * knock_progress * 3.0)
+		apply_torque_impulse(Vector3.UP * clamp(position.x * 0.1, -10.0, 10.0) + Vector3.UP * knock_progress * 3.0)
 
 	if car_collision_cast.is_colliding() and not Input.is_key_pressed(KEY_I):
 		var body : Node3D = car_collision_cast.get_collider(0)
@@ -90,7 +92,10 @@ func _process(delta : float):
 			GameState.stun_timer = 0.5
 			angular_damp = 0.01
 			apply_force(Vector3(1,0,0) * body.speed * collision_force)
-			apply_torque_impulse(Vector3.FORWARD * clamp(body.speed * 0.1, -10.0, 10.0) + Vector3.RIGHT * knock_progress * 3.0)
+			var dir := 1.0
+			if effet_random.randi_range(0,1) == 1:
+				dir *= -1
+			apply_torque_impulse(Vector3.UP * clamp(body.speed * 0.5, -10.0, 10.0) * dir)
 		elif body is Nuggets:
 			if not body.collected:
 				body.collect()
