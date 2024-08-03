@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameState="*res://game_state.tscn"
 FadeToBlack="*res://fade_to_black.tscn"
+Audio="*res://audio.tscn"
 
 [display]
 

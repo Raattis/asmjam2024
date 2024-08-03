@@ -93,9 +93,10 @@ func _process(delta : float):
 			angular_damp = 0.01
 			apply_force(Vector3(1,0,0) * body.speed * collision_force)
 			var dir := 1.0
-			if effet_random.randi_range(0,1) == 1:
+			if effet_random.randi_range(0,2) == 1:
 				dir *= -1
-			apply_torque_impulse(Vector3.UP * clamp(body.speed * 0.5, -10.0, 10.0) * dir)
+			apply_torque_impulse(Vector3.UP * clamp(body.speed * 1.5, -10.0, 10.0) * dir)
+			Audio.crash()
 		elif body is Nuggets:
 			if not body.collected:
 				body.collect()
