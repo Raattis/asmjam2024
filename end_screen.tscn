@@ -1,14 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://dumgv4glro4qu"]
+[gd_scene load_steps=10 format=3 uid="uid://dumgv4glro4qu"]
 
-[ext_resource type="Texture2D" uid="uid://c3v35x70xhq1g" path="res://gfx/chicken_face_texture.png" id="1_orw02"]
+[ext_resource type="PackedScene" uid="uid://bo4ufbt5wr6nw" path="res://gfx/cyborgchicken/cyborgchicken_05.glb" id="1_fafjy"]
 [ext_resource type="Script" path="res://halo_bob_animation.gd" id="2_m8tv4"]
 [ext_resource type="Script" path="res://end_nugget_spawn.gd" id="4_8um7b"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2s16b"]
-albedo_texture = ExtResource("1_orw02")
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_ftsy7"]
-material = SubResource("StandardMaterial3D_2s16b")
 
 [sub_resource type="Animation" id="Animation_k7oi0"]
 length = 0.001
@@ -61,9 +55,8 @@ background_color = Color(0.4992, 0.59776, 0.64, 1)
 
 [node name="end_chicken" type="Node3D" parent="."]
 
-[node name="chicken_mesh" type="MeshInstance3D" parent="end_chicken"]
-transform = Transform3D(0.996098, 0, -0.0882511, 0, 1, 0, 0.0882511, 0, 0.996098, -0.0573747, 0, 0)
-mesh = SubResource("CapsuleMesh_ftsy7")
+[node name="chicken_mesh" parent="end_chicken" instance=ExtResource("1_fafjy")]
+transform = Transform3D(-0.181436, 0, 0.149352, 0, 0.235, 0, -0.149352, 0, -0.181436, 0, -2.59723, 0)
 
 [node name="halo_bob_animation" type="AnimationPlayer" parent="end_chicken"]
 libraries = {
@@ -72,7 +65,7 @@ libraries = {
 script = ExtResource("2_m8tv4")
 
 [node name="halo" type="MeshInstance3D" parent="end_chicken/halo_bob_animation"]
-transform = Transform3D(1, 0, 0, 0, 0.987292, -0.158916, 0, 0.158916, 0.987292, 0, 1.21664, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21664, 0)
 mesh = SubResource("TorusMesh_7rgrp")
 skeleton = NodePath("../../..")
 
