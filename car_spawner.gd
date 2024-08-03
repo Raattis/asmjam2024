@@ -30,13 +30,18 @@ func spawn_lane(lane_index: int):
 	
 	var nug_random := RandomNumberGenerator.new()
 	if lane_index % 3 == 0 and not lane_index in GameState.nugs_eaten:
-		var nugs : Node3D = nuggets.instantiate()
-		nugs.progress_position = progress + GameState.lane_width * 0.2 * nug_random.randf_range(-1,1)
-		nugs.lane_index = lane_index
-		nugs.position.y = 10000
-		nugs.position.x = nug_random.randf_range(-25.0, 25.0)
-		add_child(nugs)
-		lanes[lane_index].append(nugs)
+		var bonus_nugets: bool = randf() < 0.05
+		var nugets = 1
+		if bonus_nugets:
+			nugets = 3
+		for i in range(nugets):
+			var nugs : Node3D = nuggets.instantiate()
+			nugs.progress_position = progress + GameState.lane_width * 0.2 * nug_random.randf_range(-1,1)
+			nugs.lane_index = lane_index
+			nugs.position.y = 10000
+			nugs.position.x = nug_random.randf_range(-25.0, 25.0)
+			add_child(nugs)
+			lanes[lane_index].append(nugs)
 	
 	var spawn_random := RandomNumberGenerator.new()
 	spawn_random.seed = lane_index
