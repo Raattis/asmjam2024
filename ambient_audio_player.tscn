@@ -1,0 +1,61 @@
+[gd_scene load_steps=13 format=3 uid="uid://cnba7iuenfqsy"]
+
+[ext_resource type="Script" path="res://ambient_audio_player.gd" id="1_q1dh6"]
+[ext_resource type="AudioStream" uid="uid://dg5nkl7jslk6y" path="res://audio/liikenne/braau.1.wav" id="1_wione"]
+[ext_resource type="AudioStream" uid="uid://dayvslviyh2jy" path="res://audio/liikenne/brbrbrrbbrbrrbr.wav" id="2_yiic0"]
+[ext_resource type="AudioStream" uid="uid://qnsat0j7u50x" path="res://audio/liikenne/brrrrfffsss.1.wav" id="3_req1s"]
+[ext_resource type="AudioStream" uid="uid://doe8ue4jixiph" path="res://audio/liikenne/brrrrr.1.wav" id="4_pbwax"]
+[ext_resource type="AudioStream" uid="uid://pf8fmn5iuhwd" path="res://audio/liikenne/RRRRRRRRRRR.wav" id="5_48p0f"]
+[ext_resource type="AudioStream" uid="uid://cp38g8y17tl6q" path="res://audio/liikenne/rrrrrrrrrrrrrrrrr.wav" id="6_3jrv7"]
+[ext_resource type="AudioStream" uid="uid://d2q2fak1s4pr" path="res://audio/liikenne/swoosh.1.wav" id="7_43oe5"]
+[ext_resource type="AudioStream" uid="uid://b26jf52q3326j" path="res://audio/liikenne/swoosh.2.wav" id="8_2dkjh"]
+[ext_resource type="AudioStream" uid="uid://yvyk4fas6xtl" path="res://audio/liikenne/vfvfrvfrffrrvrv.1.wav" id="9_1dqgk"]
+[ext_resource type="AudioStream" uid="uid://c2wgfitv0lckw" path="res://audio/liikenne/vfvvfuifiuvffu.wav" id="10_opr2b"]
+[ext_resource type="AudioStream" uid="uid://dimb41lmyew46" path="res://audio/liikenne/vrffrvrrfvvrrfvf.wav" id="11_5dwjd"]
+
+[node name="AudioStreamPlayer" type="Node"]
+script = ExtResource("1_q1dh6")
+
+[node name="Braau_1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_wione")
+volume_db = -16.865
+
+[node name="Brbrbrrbbrbrrbr" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_yiic0")
+volume_db = -16.865
+
+[node name="Brrrrfffsss_1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_req1s")
+volume_db = -16.865
+
+[node name="Brrrrr_1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_pbwax")
+volume_db = -16.865
+
+[node name="Rrrrrrrrrrr" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_48p0f")
+volume_db = -16.865
+
+[node name="Rrrrrrrrrrrrrrrrr" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_3jrv7")
+volume_db = -16.865
+
+[node name="Swoosh_1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_43oe5")
+volume_db = -16.865
+
+[node name="Swoosh_2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_2dkjh")
+volume_db = -16.865
+
+[node name="Vfvfrvfrffrrvrv_1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_1dqgk")
+volume_db = -16.865
+
+[node name="Vfvvfuifiuvffu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_opr2b")
+volume_db = -16.865
+
+[node name="Vrffrvrrfvvrrfvf" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_5dwjd")
+volume_db = -16.865
