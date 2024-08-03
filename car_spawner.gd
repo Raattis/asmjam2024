@@ -67,3 +67,9 @@ func _process(delta):
 				if lane and is_instance_valid(lane):
 					lane.queue_free()
 			lanes.erase(lane_index)
+	for lane_index in range(current_lane_index + last_visible, current_lane_index + first_visible + 10):
+		if lane_index in lanes:
+			for lane in lanes[lane_index]:
+				if lane and is_instance_valid(lane):
+					lane.queue_free()
+			lanes.erase(lane_index)
