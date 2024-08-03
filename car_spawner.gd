@@ -40,12 +40,15 @@ func spawn_lane(lane_index: int):
 	
 	var spawn_random := RandomNumberGenerator.new()
 	spawn_random.seed = lane_index
+	var color_random := RandomNumberGenerator.new()
+	color_random.seed = lane_index
 	var offset := spawn_random.randf_range(0, GameState.terrain_scale.x)
 	for j in range(spawn_random.randi_range(1 + 155 / speed, 6 + progress)):
 		var car := car_scene.instantiate()
 		car.progress_position = progress + GameState.lane_width * 0.1 * spawn_random.randf_range(-1, 1)
 		car.speed = speed
-		offset += car.get_node("MeshInstance3D").scale.z * spawn_random.randf_range(3.5, 6.0)
+		var meshNode: Node3D = car.get_node("MeshInstance3D")
+		offset += meshNode.scale.z * spawn_random.randf_range(3.5, 6.0)
 		#car.position.x += fmod(offset, GameState.terrain_scale.x * 1.0) - GameState.terrain_scale.x * 0.5
 		car.position.y = 10000
 		add_child(car)
@@ -53,6 +56,15 @@ func spawn_lane(lane_index: int):
 			car.speed *= -1
 		car.offset_x = offset + 1000 * car.speed
 		lanes[lane_index].append(car)
+		
+		var carBodyNode: MeshInstance3D = meshNode.get_node("Cube")
+		var material: StandardMaterial3D = carBodyNode.mesh.surface_get_material(0).duplicate()
+		material.albedo_color = Color.from_hsv(
+			floor(color_random.randf_range(0., 3.)) / 3.,
+			color_random.randf_range(0.3, 0.8),
+			1.
+		)
+		carBodyNode.material_override = material
 
 func _process(delta):
 	var current_lane_index := int(GameState.progress / GameState.lane_width)
