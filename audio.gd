@@ -1,9 +1,8 @@
 extends Node3D
 
-const TEPASTELU = preload("res://sfx/tepastelu.wav")
 @onready var tepastelu_player = $tepastelu_player
-const TURPAAN = preload("res://sfx/turpaan.wav")
 @onready var turpaan_player = $turpaan_player
+@onready var pipckup_player = $pipckup_player
 @onready var bgm = $bgm
 
 
@@ -20,6 +19,10 @@ func _process(delta):
 		bgm.play()
 	if GameState.restart_game:
 		bgm.stop()
+
+func pickup():
+	if not pipckup_player.playing or pipckup_player.get_playback_position() > 0.5:
+		pipckup_player.play()
 
 func crash():
 	if not turpaan_player.playing or turpaan_player.get_playback_position() > 0.5:

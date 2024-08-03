@@ -15,4 +15,5 @@ func collect():
 		return
 	collected = true
 	GameState.nugs_eaten.append(lane_index)
+	Audio.pickup()
 	print("collected!")
