@@ -15,9 +15,13 @@ var nugs_eaten : Array[int] = []
 const lane_count := 30
 const lane_width := 1.0 / lane_count
 
+var game_started := false
 var victory := false
-const victory_limit := 5.5
-const end_limit := 15.0
+const victory_limit := 3.0
+var ended := false
+const end_limit := 10.0
+var ended_timeout := 1.0
+var restart_game := false
 
 func progress_to_pos(progress_pos : float) -> Vector3:
 	var angle : float = (progress_pos - GameState.progress) * progress_mult
@@ -27,16 +31,32 @@ func progress_to_pos(progress_pos : float) -> Vector3:
 	return p
 
 func _ready():
-	pass
+	restart_game_now()
+
+func restart_game_now():
+	progress = -0.1
+	progress_velocity = 0.0
+	stun_timer = 0.0
+	nugs_eaten = []
+	game_started = false
+	victory = false
+	ended = false
+	ended_timeout = 1.0
+	restart_game = false
 
 func is_stunned():
 	return stun_timer > 0.0
 
 func _process(delta):
 	if victory:
-		progress += delta * clamp(progress / victory_limit, 1.0, 5.0)
 		if progress > end_limit:
-			pass # fade to white
+			ended = true
+			progress_velocity = 0.0
+			ended_timeout -= delta
+			if ended_timeout < 0 and Input.is_anything_pressed():
+				restart_game = true
+			return
+		progress += delta * color_length * 1.0
 		return
 	
 	if stun_timer > 0.0:

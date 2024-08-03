@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameState="*res://game_state.tscn"
+FadeToBlack="*res://fade_to_black.tscn"
 
 [display]
 
