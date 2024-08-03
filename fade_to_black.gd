@@ -1,6 +1,5 @@
 extends Node3D
 
-const START = preload("res://main.tscn")
 const MAIN = preload("res://main.tscn")
 const END = preload("res://main.tscn")
 var prev_gamme_started := false
@@ -13,17 +12,18 @@ func _ready():
 
 func _process(delta):
 	if GameState.ended and not prev_gamme_ended:
-		prev_gamme_ended = true
 		$animation_player.play("end_game")
 		print("end_game")
 	if GameState.game_started and not prev_gamme_started:
-		prev_gamme_started = true
 		$animation_player.play("start_game")
 		print("start_game")
 	if GameState.restart_game and not prev_gamme_restarted:
-		prev_gamme_restarted = true
 		$animation_player.play("restart_game")
 		print("restart_game")
+
+	prev_gamme_started = GameState.game_started
+	prev_gamme_ended = GameState.ended
+	prev_gamme_restarted = GameState.restart_game
 
 func load_main_scene():
 	get_tree().change_scene_to_packed(MAIN)
@@ -33,4 +33,4 @@ func load_end_scene():
 
 func restart_game():
 	GameState.restart_game_now()
-	get_tree().change_scene_to_file("res://main.tscn")
+	get_tree().change_scene_to_file("res://intro_scene.tscn")

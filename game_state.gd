@@ -34,6 +34,7 @@ func _ready():
 	restart_game_now()
 
 func restart_game_now():
+	print("restart_game_now()")
 	progress = -0.1
 	progress_velocity = 0.0
 	stun_timer = 0.0
