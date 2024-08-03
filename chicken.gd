@@ -1,3 +1,4 @@
+class_name Chicken
 extends RigidBody3D
 
 const move_force := 500.0
@@ -11,6 +12,12 @@ var feather_particles_index := 1
 @onready var car_collision_cast = $car_collision_cast
 const collision_force := 50.0
 
+var animation_progress := 0.0
+@onready var chicken_mesh = $chicken_mesh
+
+const nugget_trail = preload("res://nugget_trail.tscn")
+var nugger_trail_head : NuggetTrail = null
+
 func _ready():
 	contact_monitor = true
 
@@ -18,7 +25,7 @@ func _process(delta : float):
 	if GameState.victory:
 		position.x = lerp(position.x, 0.0, 1.0 - pow(0.001, delta))
 		return
-	
+
 	if not Input.is_action_pressed("ui_left") and not Input.is_action_pressed("ui_right"):
 		left_right = 0.0
 	elif Input.is_action_just_pressed("ui_left"):
@@ -86,7 +93,22 @@ func _process(delta : float):
 			apply_torque_impulse(Vector3.FORWARD * clamp(body.speed * 0.1, -10.0, 10.0) + Vector3.RIGHT * knock_progress * 3.0)
 			print("car")
 		elif body is Nuggets:
-			body.collect()
+			if not body.collected:
+				body.collect()
+				var trail := nugget_trail.instantiate()
+				trail.next = self
+				trail.position.y = 10000
+				$"..".add_child(trail)
+				if nugger_trail_head:
+					nugger_trail_head.next = trail
+				nugger_trail_head = trail
 		else:
 			print("other: ", body.name)
-			
+	
+	var current_speed : float = abs(GameState.progress_velocity) * 100.0 + abs(linear_velocity.x) * 0.5
+	animation_progress += delta * current_speed
+	chicken_mesh.position.y = abs(sin(animation_progress + PI * 0.5)) * 1.0
+	chicken_mesh.position.x = sin(animation_progress + PI * 0.5) * 0.5
+	chicken_mesh.rotation.z = sin(animation_progress) * 0.1
+	chicken_mesh.position.y *= clamp(current_speed, 0.0, 1.0)
+	chicken_mesh.rotation *= clamp(current_speed, 0.0, 1.0)
