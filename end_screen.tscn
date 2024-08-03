@@ -9,6 +9,16 @@ albedo_texture = ExtResource("1_orw02")
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ftsy7"]
 material = SubResource("StandardMaterial3D_2s16b")
 
+[sub_resource type="Animation" id="Animation_k7oi0"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("halo_bob_animation/halo")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.21664, 0)
+
 [sub_resource type="Animation" id="Animation_gauo7"]
 resource_name = "bob"
 length = 1.6
@@ -27,16 +37,6 @@ tracks/1/path = NodePath("halo_bob_animation/halo")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 0.0797118, 0, 0, 0.996818, 0.366667, 1, 0.0563647, 0.704857, -0.0563647, 0.704857, 0.766667, 1, 0.0206309, 0.962852, -0.0769957, 0.257995, 1.13333, 1, 0.0440846, -0.830497, 0.0664117, 0.55129)
-
-[sub_resource type="Animation" id="Animation_k7oi0"]
-length = 0.001
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("halo_bob_animation/halo")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.21664, 0)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r1sgb"]
 _data = {

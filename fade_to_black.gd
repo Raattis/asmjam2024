@@ -1,7 +1,6 @@
 extends Node3D
-
 const MAIN = preload("res://main.tscn")
-const END = preload("res://main.tscn")
+const END = preload("res://end_screen.tscn")
 var prev_gamme_started := false
 var prev_gamme_ended := false
 var prev_gamme_restarted := false
@@ -29,7 +28,7 @@ func load_main_scene():
 	get_tree().change_scene_to_packed(MAIN)
 
 func load_end_scene():
-	pass #get_tree().change_scene_to_packed(END)
+	get_tree().change_scene_to_packed(END)
 
 func restart_game():
 	GameState.restart_game_now()
