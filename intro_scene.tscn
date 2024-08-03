@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://6gik455qakyd"]
+[gd_scene load_steps=8 format=3 uid="uid://6gik455qakyd"]
 
 [ext_resource type="PackedScene" uid="uid://cmebvupi4crbj" path="res://gfx/nugettipaketti/nugettipaketti.glb" id="1_3l6i5"]
 [ext_resource type="Script" path="res://intro_animation.gd" id="2_4p500"]
+[ext_resource type="AudioStream" uid="uid://bang83hy6mdek" path="res://audio/sfx.intro.wav" id="2_tngnb"]
 [ext_resource type="PackedScene" uid="uid://bo4ufbt5wr6nw" path="res://gfx/cyborgchicken/cyborgchicken_05.glb" id="3_aiwcb"]
 
 [sub_resource type="Animation" id="Animation_rf2tl"]
@@ -27,10 +28,34 @@ tracks/2/path = NodePath("intro_chicken")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("intro_chicken/cyborgchicken_05:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("intro_chicken/cyborgchicken_05:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.135, 0.135, 0.135)]
+}
 
 [sub_resource type="Animation" id="Animation_2dbsp"]
 resource_name = "intro"
-length = 2.2
+length = 7.0
 tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -44,7 +69,7 @@ tracks/1/enabled = true
 tracks/1/path = NodePath("intro_camera")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, -0.0119029, 0, 0, 0.999929, 0.3, 1, -0.0160595, 0, 0, 0.999871, 1, 1, -0.159683, 0, 0, 0.987168, 1.56667, 1, -0.159683, 0, 0, 0.987168, 1.66667, 1, 0.0440291, 0, 0, 0.99903)
+tracks/1/keys = PackedFloat32Array(0, 1, -0.0119029, 0, 0, 0.999929, 0.3, 1, -0.0160595, 0, 0, 0.999871, 2.2, 1, -0.159683, 0, 0, 0.987168, 3.6, 1, -0.159683, 0, 0, 0.987168, 4.73333, 1, 0.0440291, 0, 0, 0.99903)
 tracks/2/type = "position_3d"
 tracks/2/imported = false
 tracks/2/enabled = true
@@ -58,14 +83,14 @@ tracks/3/enabled = true
 tracks/3/path = NodePath("intro_nuggets")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0.933333, 1, 0, 0, 0, 1, 1.06667, 1, 0, 0, -0.148629, 0.988893, 1.13333, 1, 0, 0, 0.129211, 0.991617, 1.2, 1, 0, 0, 0.00426728, 0.999991, 1.5, 1, 0, 0, 0.00426728, 0.999991, 1.6, 1, 0, 0, 0.00426728, 0.999991, 1.66667, 1, 0.000367207, -0.0860508, 0.00425145, 0.996282, 1.83333, 1, -0.004267, 0.999923, 4.95643e-05, 0.0116149, 1.9, 1, -0.000593927, 0.13918, 0.00422575, 0.990258, 2, 1, -0.000593927, 0.13918, 0.00422575, 0.990258)
+tracks/3/keys = PackedFloat32Array(0.933333, 1, 0, 0, 0, 1, 1.2, 1, 0, 0, 0.00426728, 0.999991, 1.5, 1, 0, 0, 0.00426728, 0.999991, 1.66667, 1, 0.000367207, -0.0860508, 0.00425145, 0.996282, 1.9, 1, -0.000593927, 0.13918, 0.00422575, 0.990258, 2, 1, -0.000593927, 0.13918, 0.00422575, 0.990258, 2.16667, 1, 0, 0, 0, 1, 2.3, 1, 0, 0, -0.148629, 0.988893, 2.36666, 1, 0, 0, 0.129211, 0.991617, 2.43333, 1, 0, 0, 0.00426728, 0.999991, 2.73333, 1, 0, 0, 0.00426728, 0.999991, 2.83333, 1, 0, 0, 0.00426728, 0.999991, 2.9, 1, 0.000367207, -0.0860508, 0.00425145, 0.996282, 3.06666, 1, -0.004267, 0.999923, 4.95643e-05, 0.0116149, 3.13333, 1, -0.000593927, 0.13918, 0.00422575, 0.990258, 3.23333, 1, -0.000593927, 0.13918, 0.00422575, 0.990258, 3.36667, 1, 0, 0, 0, 1, 3.50001, 1, 0, 0, -0.148629, 0.988893, 3.56667, 1, 0, 0, 0.129211, 0.991617, 3.63334, 1, 0, 0, 0.00426728, 0.999991, 3.93334, 1, 0, 0, 0.00426728, 0.999991, 4.03334, 1, 0, 0, 0.00426728, 0.999991, 4.10001, 1, 0.000367207, -0.0860508, 0.00425145, 0.996282, 4.26667, 1, -0.004267, 0.999923, 4.95643e-05, 0.0116149, 4.33334, 1, -0.000593927, 0.13918, 0.00422575, 0.990258, 4.43334, 1, -0.000593927, 0.13918, 0.00422575, 0.990258)
 tracks/4/type = "position_3d"
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/path = NodePath("intro_chicken")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/keys = PackedFloat32Array(1.83333, 1, 0, -15, 0, 1.9, 1, 0, -4.67, 0, 2, 1, 0, 1.31704, 0)
+tracks/4/keys = PackedFloat32Array(4.86666, 1, 0, -15, 0, 4.93333, 1, 0, -4.67, 0, 5.03333, 1, 0, 1.31704, 0)
 tracks/5/type = "method"
 tracks/5/imported = false
 tracks/5/enabled = true
@@ -73,12 +98,51 @@ tracks/5/path = NodePath("intro_animation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(2.13333),
+"times": PackedFloat32Array(7),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"start_game"
 }]
+}
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sfx_intro")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 1.2773,
+"stream": ExtResource("2_tngnb")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/6/use_blend = true
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("intro_chicken/cyborgchicken_05:rotation")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(4.93333, 5.06667, 5.26667, 5.53333, 6.26667, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0), Vector3(-0.0579798, 2.7106, -8.76453e-09), Vector3(0.285153, -2.53519, -0.0934236), Vector3(0.0174533, 0.127409, 0), Vector3(0.174533, 3.5692, 0.200713), Vector3(0, 3.5692, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("intro_chicken/cyborgchicken_05:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(5.33333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.135, 0.135, 0.135)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tqt8e"]
@@ -91,9 +155,10 @@ _data = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.435116, 0)
 
 [node name="intro_nuggets" parent="." instance=ExtResource("1_3l6i5")]
+transform = Transform3D(0.961222, -0.00853449, 0.275643, 0.00820384, 0.999964, 0.00235256, -0.275653, -1.86265e-09, 0.961257, 0, 0, 0)
 
 [node name="intro_camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.999717, 0.0238045, 0, -0.0238045, 0.999717, 0, 1.15674, 1.55102)
+transform = Transform3D(1, 0, 0, 0, 0.996123, -0.0879729, 0, 0.0879729, 0.996123, 0, 1.15674, 1.55102)
 
 [node name="intro_animation" type="AnimationPlayer" parent="."]
 libraries = {
@@ -104,7 +169,9 @@ script = ExtResource("2_4p500")
 [node name="intro_chicken" type="Node3D" parent="."]
 
 [node name="cyborgchicken_05" parent="intro_chicken" instance=ExtResource("3_aiwcb")]
-transform = Transform3D(-0.135, 0, -1.18021e-08, 0, 0.135, 0, 1.18021e-08, 0, -0.135, 0, -1.19221, 0)
+transform = Transform3D(-0.135, 0, -2.03844e-08, 0, 0.135, 0, 2.03844e-08, 0, -0.135, 0, -1.19221, 0)
 
 [node name="intro_light" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.965926, 0, 0.258819, -0.12941, 0.866025, 0.482963, -0.224144, -0.5, 0.836516, 0, 4, 2)
+
+[node name="Sfx_intro" type="AudioStreamPlayer" parent="."]
