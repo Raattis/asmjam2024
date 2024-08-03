@@ -23,11 +23,9 @@ Audio="*res://audio.tscn"
 
 [display]
 
-window/size/viewport_width=600
-window/size/viewport_height=400
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/size/initial_position_type=0
-window/size/initial_position=Vector2i(1500, 600)
-window/size/always_on_top=true
 
 [editor_plugins]
 

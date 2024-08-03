@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://csu1h4s56gpns"]
+[gd_scene load_steps=5 format=3 uid="uid://csu1h4s56gpns"]
 
 [ext_resource type="Script" path="res://audio.gd" id="1_kt3jg"]
 [ext_resource type="AudioStream" uid="uid://ccmvu7q0wga3g" path="res://sfx/tepastelu.wav" id="2_wgifc"]
 [ext_resource type="AudioStream" uid="uid://by7c0bjrmhqpn" path="res://sfx/turpaan.wav" id="3_dlcvl"]
+[ext_resource type="AudioStream" uid="uid://d0apb02fjy60f" path="res://sfx/cyborg_chicken_ingame_tune.ogg" id="4_ydh7w"]
 
 [node name="audio" type="Node3D"]
 script = ExtResource("1_kt3jg")
@@ -15,3 +16,7 @@ stream = ExtResource("2_wgifc")
 [node name="turpaan_player" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_dlcvl")
 volume_db = -33.907
+
+[node name="bgm" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_ydh7w")
+max_db = -3.0
