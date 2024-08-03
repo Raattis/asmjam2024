@@ -50,6 +50,12 @@ func _process(delta : float):
 	elif  Input.is_action_just_released("ui_up"):
 		up_down = -1.0
 
+	var joystick := GameState.virtual_joystick()
+	if joystick.length() > 0.05:
+		const deadzone := 0.5
+		left_right = clamp(abs(joystick.x) - deadzone, 0, 1) * sign(joystick.x)
+		up_down = clamp(abs(joystick.y) - deadzone, 0, 1) * sign(-joystick.y)
+	print(left_right, "   ", up_down)
 	var lerp_factor := 1.0 - pow(0.1, delta)
 	var lerp_factor_fast := 1.0 - pow(0.001, delta)
 	if not GameState.is_stunned():

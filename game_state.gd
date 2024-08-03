@@ -67,7 +67,14 @@ func _process(delta):
 	
 	if progress > victory_limit:
 		victory = true
-	
+
+var mouse_drag_start := Vector2()
+var mouse_pos := Vector2()
+func virtual_joystick() -> Vector2:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		return (mouse_pos - mouse_drag_start) / 30
+	return Vector2()
+
 func _input(event):
 	if event is InputEventKey:
 		if event.keycode == KEY_ESCAPE and event.is_pressed():
@@ -76,3 +83,9 @@ func _input(event):
 		if event.keycode == KEY_R and event.is_pressed():
 			OS.set_restart_on_exit(true)
 			get_tree().quit(0)
+	if event is InputEventMouseButton:
+		if event.pressed:
+			mouse_drag_start = mouse_pos
+	elif event is InputEventMouseMotion:
+		mouse_pos = event.position
+			

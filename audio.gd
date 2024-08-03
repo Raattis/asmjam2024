@@ -5,6 +5,7 @@ extends Node3D
 @onready var pipckup_player = $pipckup_player
 @onready var bgm = $bgm
 
+var disable_bgm := false
 
 func _ready():
 	pass # Replace with function body.
@@ -15,10 +16,19 @@ func _process(delta):
 		if (abs(chicken.up_down) > 0 or abs(chicken.left_right) > 0) and (chicken.linear_velocity.length() > 1 or abs(GameState.progress_velocity) > 0.1):
 			if not tepastelu_player.playing and not GameState.is_stunned():
 				tepastelu_player.play()
-	if GameState.game_started and not GameState.restart_game and not bgm.playing:
+	if GameState.game_started and not GameState.restart_game and not bgm.playing and not disable_bgm:
 		bgm.play()
 	if GameState.restart_game:
 		bgm.stop()
+		
+func _input(event):
+	if event is InputEventKey:
+		if event.keycode == KEY_M and event.is_pressed():
+			disable_bgm = !disable_bgm
+			if not disable_bgm:
+				bgm.play()
+			else:
+				bgm.stop()
 
 func pickup():
 	if not pipckup_player.playing or pipckup_player.get_playback_position() > 0.5:
