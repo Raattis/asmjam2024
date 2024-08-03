@@ -1,7 +1,7 @@
 class_name Chicken
 extends RigidBody3D
 
-const move_force := 500.0
+const move_force := 700.0
 var left_right := 0.0
 var up_down := 0.0
 
@@ -91,7 +91,6 @@ func _process(delta : float):
 			angular_damp = 0.01
 			apply_force(Vector3(1,0,0) * body.speed * collision_force)
 			apply_torque_impulse(Vector3.FORWARD * clamp(body.speed * 0.1, -10.0, 10.0) + Vector3.RIGHT * knock_progress * 3.0)
-			print("car")
 		elif body is Nuggets:
 			if not body.collected:
 				body.collect()
@@ -105,10 +104,13 @@ func _process(delta : float):
 		else:
 			print("other: ", body.name)
 	
-	var current_speed : float = abs(GameState.progress_velocity) * 100.0 + abs(linear_velocity.x) * 0.5
-	animation_progress += delta * current_speed
-	chicken_mesh.position.y = abs(sin(animation_progress + PI * 0.5)) * 1.0
-	chicken_mesh.position.x = sin(animation_progress + PI * 0.5) * 0.5
-	chicken_mesh.rotation.z = sin(animation_progress) * 0.1
-	chicken_mesh.position.y *= clamp(current_speed, 0.0, 1.0)
-	chicken_mesh.rotation *= clamp(current_speed, 0.0, 1.0)
+	var current_speed : float = abs(GameState.progress_velocity) * 100.0 + abs(linear_velocity.x) * 0.4
+	if abs(current_speed) < 1.0:
+		chicken_mesh.position.y = lerp(chicken_mesh.position.y, 0.0, lerp_factor_fast)
+		chicken_mesh.rotation = lerp(chicken_mesh.rotation, Vector3.ZERO, lerp_factor_fast)
+	else:
+		animation_progress += delta * current_speed
+		chicken_mesh.position.y = abs(sin(animation_progress + PI * 0.5)) * 1.0
+		chicken_mesh.position.x = sin(animation_progress + PI * 0.5) * 0.5
+		chicken_mesh.rotation.z = sin(animation_progress) * 0.1
+		
