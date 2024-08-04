@@ -155,7 +155,7 @@ _data = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.435116, 0)
 
 [node name="intro_nuggets" parent="." instance=ExtResource("1_3l6i5")]
-transform = Transform3D(0.961222, -0.00853449, 0.275643, 0.00820384, 0.999964, 0.00235256, -0.275653, 1.62982e-09, 0.961257, 0, 0, 0)
+transform = Transform3D(0.961222, -0.00853449, 0.275643, 0.00820383, 0.999964, 0.00235256, -0.275653, 1.16415e-09, 0.961257, 0, 0, 0)
 
 [node name="intro_camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.996123, -0.0879729, 0, 0.0879729, 0.996123, 0, 1.15674, 1.55102)
@@ -175,3 +175,6 @@ transform = Transform3D(-0.135, 0, -3.4225e-07, 0, 0.135, 0, 3.4225e-07, 0, -0.1
 transform = Transform3D(0.965926, 0, 0.258819, -0.12941, 0.866025, 0.482963, -0.224144, -0.5, 0.836516, 0, 4, 2)
 
 [node name="Sfx_intro" type="AudioStreamPlayer" parent="."]
+
+[node name="cyborgchicken_05" parent="." instance=ExtResource("3_aiwcb")]
+transform = Transform3D(0.018225, 0, 9.24074e-08, 0, 0.018225, 0, -9.24074e-08, 0, 0.018225, -6.85915, -78.2824, -190.069)

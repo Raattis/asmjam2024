@@ -76,13 +76,14 @@ func virtual_joystick() -> Vector2:
 	return Vector2()
 
 func _input(event):
-	if event is InputEventKey:
-		if event.keycode == KEY_ESCAPE and event.is_pressed():
-			OS.set_restart_on_exit(false)
-			get_tree().quit(0)
-		if event.keycode == KEY_R and event.is_pressed():
-			OS.set_restart_on_exit(true)
-			get_tree().quit(0)
+	if not OS.has_feature("web"):
+		if event is InputEventKey:
+			if event.keycode == KEY_ESCAPE and event.is_pressed():
+				OS.set_restart_on_exit(false)
+				get_tree().quit(0)
+			if event.keycode == KEY_R and event.is_pressed():
+				OS.set_restart_on_exit(true)
+				get_tree().quit(0)
 	if event is InputEventMouseButton:
 		if event.pressed:
 			mouse_drag_start = mouse_pos

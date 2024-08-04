@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 	
 	if playing_streams.size() < simultaneous_count:
 		var stream = pick_some_stream()
-		if !stream.playing:
+		if stream and !stream.playing:
 			stream.play()
 			playing_streams.push_back(stream)
 			print("start stream " + stream.name)

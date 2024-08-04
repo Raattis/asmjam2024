@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b37h1j6h5qy1a"]
+[gd_scene load_steps=23 format=3 uid="uid://b37h1j6h5qy1a"]
 
 [ext_resource type="Script" path="res://terrain.gd" id="1_bpcbc"]
 [ext_resource type="Texture2D" uid="uid://njtf0eajht3d" path="res://gfx/asphalt.png" id="1_eiec3"]
@@ -10,6 +10,8 @@
 [ext_resource type="Shader" path="res://motion_blur/moblur_shader.gdshader" id="6_enfr1"]
 [ext_resource type="Script" path="res://car_spawner.gd" id="7_gqins"]
 [ext_resource type="PackedScene" uid="uid://cnba7iuenfqsy" path="res://ambient_audio_player.tscn" id="10_46tuc"]
+[ext_resource type="PackedScene" uid="uid://bk4lhmxxblrvd" path="res://gfx/auto/sedan/auto.sedan.glb" id="11_s830i"]
+[ext_resource type="PackedScene" uid="uid://7s43ats2mipi" path="res://nugettipaketti.tscn" id="12_43may"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xgod4"]
 albedo_texture = ExtResource("1_eiec3")
@@ -139,3 +141,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10000, 0)
 script = ExtResource("7_gqins")
 
 [node name="AmbientAudioPlayer" parent="." instance=ExtResource("10_46tuc")]
+
+[node name="car_preloader" parent="." instance=ExtResource("11_s830i")]
+transform = Transform3D(-3.86873e-07, 0, 8.85062, 0, 8.85062, 0, -8.85062, 0, -3.86873e-07, 0, -13, -23)
+
+[node name="nugettipaketti" parent="." instance=ExtResource("12_43may")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13, -23)
