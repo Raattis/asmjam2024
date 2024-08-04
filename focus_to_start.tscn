@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://br5mn6jocqmar"]
+
+[ext_resource type="Script" path="res://focus_to_start.gd" id="1_rq6pn"]
+[ext_resource type="PackedScene" uid="uid://cmebvupi4crbj" path="res://gfx/nugettipaketti/nugettipaketti.glb" id="2_t2phx"]
+
+[node name="focus_to_start" type="Node3D"]
+script = ExtResource("1_rq6pn")
+
+[node name="intro_nuggets" parent="." instance=ExtResource("2_t2phx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="intro_camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999717, 0.0238041, 0, -0.0238041, 0.999717, 0, 1.33691, 2.5801)
+
+[node name="intro_light" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.965926, 0, 0.258819, -0.12941, 0.866025, 0.482963, -0.224144, -0.5, 0.836516, 0, 4, 2)

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="To Get To The Other Side"
-run/main_scene="res://intro_scene.tscn"
+run/main_scene="res://focus_to_start.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://gfx/chicken_face_texture.png"
 
@@ -25,7 +25,8 @@ Audio="*res://audio.tscn"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/size/initial_position_type=0
+window/size/mode=2
+window/size/initial_position=Vector2i(30, 30)
 
 [editor_plugins]
 

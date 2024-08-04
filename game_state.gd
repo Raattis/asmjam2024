@@ -20,7 +20,7 @@ var victory := false
 const victory_limit := 3.0
 var ended := false
 const end_limit := 10.0
-var ended_timeout := 1.0
+var ended_timeout := 3.0
 var restart_game := false
 
 func progress_to_pos(progress_pos : float) -> Vector3:
@@ -42,7 +42,7 @@ func restart_game_now():
 	game_started = false
 	victory = false
 	ended = false
-	ended_timeout = 1.0
+	ended_timeout = 3.0
 	restart_game = false
 
 func is_stunned():

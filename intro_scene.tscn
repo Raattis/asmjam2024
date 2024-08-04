@@ -13,7 +13,7 @@ tracks/0/enabled = true
 tracks/0/path = NodePath("intro_camera")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.15674, 1.55102)
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.33691, 2.5801)
 tracks/1/type = "position_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
@@ -27,7 +27,7 @@ tracks/2/enabled = true
 tracks/2/path = NodePath("intro_chicken")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/2/keys = PackedFloat32Array(0, 1, 0, -100, 0)
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
@@ -52,6 +52,13 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector3(0.135, 0.135, 0.135)]
 }
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("intro_camera")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, -0.0119029, 0, 0, 0.999929)
 
 [sub_resource type="Animation" id="Animation_2dbsp"]
 resource_name = "intro"
@@ -155,10 +162,10 @@ _data = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.435116, 0)
 
 [node name="intro_nuggets" parent="." instance=ExtResource("1_3l6i5")]
-transform = Transform3D(0.961222, -0.00853449, 0.275643, 0.00820383, 0.999964, 0.00235256, -0.275653, 1.16415e-09, 0.961257, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="intro_camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.996123, -0.0879729, 0, 0.0879729, 0.996123, 0, 1.15674, 1.55102)
+transform = Transform3D(1, 0, 0, 0, 0.999717, 0.0238041, 0, -0.0238041, 0.999717, 0, 1.33691, 2.5801)
 
 [node name="intro_animation" type="AnimationPlayer" parent="."]
 libraries = {
@@ -167,6 +174,7 @@ libraries = {
 script = ExtResource("2_4p500")
 
 [node name="intro_chicken" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, 0)
 
 [node name="cyborgchicken_05" parent="intro_chicken" instance=ExtResource("3_aiwcb")]
 transform = Transform3D(-0.135, 0, -3.4225e-07, 0, 0.135, 0, 3.4225e-07, 0, -0.135, 0, -1.19221, 0)
