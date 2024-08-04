@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="AsmJam2024"
+config/name="To Get To The Other Side"
 run/main_scene="res://intro_scene.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://gfx/chicken_face_texture.png"
 
 [autoload]
 

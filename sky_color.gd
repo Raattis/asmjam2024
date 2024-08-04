@@ -2,6 +2,7 @@ extends Camera3D
 
 @onready var directional_light_3d = $"../DirectionalLight3D"
 @export var colors : Array[Color] = []
+@onready var reveal_the_cylinder_animation_player = $reveal_the_cylinder_animation_player
 
 func make_color(progress: float) -> Color:
 	var frac := progress / GameState.color_length
@@ -19,3 +20,8 @@ func make_color(progress: float) -> Color:
 func _process(delta):
 	environment.background_color = make_color(GameState.progress)
 	directional_light_3d.light_color = make_color(GameState.progress + GameState.color_length * 0.5)
+	if Input.is_key_pressed(KEY_Z) and Input.is_key_pressed(KEY_O):
+		if reveal_the_cylinder_animation_player.assigned_animation != "reveal":
+			reveal_the_cylinder_animation_player.play("reveal")
+	else:
+		reveal_the_cylinder_animation_player.play("RESET")

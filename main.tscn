@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b37h1j6h5qy1a"]
+[gd_scene load_steps=26 format=3 uid="uid://b37h1j6h5qy1a"]
 
 [ext_resource type="Script" path="res://terrain.gd" id="1_bpcbc"]
 [ext_resource type="Texture2D" uid="uid://njtf0eajht3d" path="res://gfx/asphalt.png" id="1_eiec3"]
@@ -47,6 +47,46 @@ shader_parameter/angular_velocity = Vector3(0, 0, 0)
 shader_parameter/iteration_count = 10
 shader_parameter/intensity = 0.324
 shader_parameter/startRadius = 4.78
+
+[sub_resource type="Animation" id="Animation_d45r5"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 27.5379, 43.8529)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.161113, 0, 0, 0.986936)
+
+[sub_resource type="Animation" id="Animation_28j2k"]
+resource_name = "reveal"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 27.5379, 43.8529, 1, 1, 233.411, 30.9191, 25.2752)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.161113, 0, 0, 0.986936, 1, 1, -0.0766511, 0.527066, 0.121805, 0.83755)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hgf5v"]
+_data = {
+"RESET": SubResource("Animation_d45r5"),
+"reveal": SubResource("Animation_28j2k")
+}
 
 [sub_resource type="GDScript" id="GDScript_knj1p"]
 script/source = "class_name Nugget
@@ -118,6 +158,11 @@ colors = Array[Color]([Color(0.741176, 0.972549, 1, 1), Color(0.519141, 0.607796
 [node name="motion_blur" parent="Camera3D" instance=ExtResource("5_l0w1x")]
 surface_material_override/0 = SubResource("ShaderMaterial_ko1bm")
 
+[node name="reveal_the_cylinder_animation_player" type="AnimationPlayer" parent="Camera3D"]
+libraries = {
+"": SubResource("AnimationLibrary_hgf5v")
+}
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.0627905, 0.998027, 0, -0.998027, 0.0627905, 0, 13.119, 0)
 light_energy = 2.5
@@ -143,7 +188,7 @@ script = ExtResource("7_gqins")
 [node name="AmbientAudioPlayer" parent="." instance=ExtResource("10_46tuc")]
 
 [node name="car_preloader" parent="." instance=ExtResource("11_s830i")]
-transform = Transform3D(-3.86873e-07, 0, 8.85062, 0, 8.85062, 0, -8.85062, 0, -3.86873e-07, 0, -13, -23)
+transform = Transform3D(-3.86873e-07, 0, 8.85062, 0, 8.85062, 0, -8.85062, 0, -3.86873e-07, 0, 0.135374, -63.1028)
 
 [node name="nugettipaketti" parent="." instance=ExtResource("12_43may")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13, -23)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.135374, -63.1028)

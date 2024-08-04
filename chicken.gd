@@ -26,6 +26,10 @@ func _ready():
 func _process(delta : float):
 	if GameState.victory:
 		position.x = lerp(position.x, 0.0, 1.0 - pow(0.001, delta))
+		animation_progress += delta * 3.0
+		chicken_mesh.position.y = abs(sin(animation_progress + PI * 0.5)) * 1.0
+		chicken_mesh.position.x = sin(animation_progress + PI * 0.5) * 0.5
+		chicken_mesh.rotation.z = sin(animation_progress) * 0.1
 		return
 
 	if not Input.is_action_pressed("ui_left") and not Input.is_action_pressed("ui_right"):
