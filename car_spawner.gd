@@ -30,11 +30,10 @@ func spawn_lane(lane_index: int):
 	
 	var nug_random := RandomNumberGenerator.new()
 	if lane_index % 3 == 0 and not lane_index in GameState.nugs_eaten:
-		var bonus_nugets: bool = randf() < 0.05
-		var nugets = 1
-		if bonus_nugets:
-			nugets = 3
-		for i in range(nugets):
+		var nuget_count = 1
+		if nug_random.randf() < 0.05:
+			nuget_count = 3
+		for i in range(nuget_count):
 			var nugs : Node3D = nuggets.instantiate()
 			nugs.progress_position = progress + GameState.lane_width * 0.2 * nug_random.randf_range(-1,1)
 			nugs.lane_index = lane_index

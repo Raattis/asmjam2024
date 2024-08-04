@@ -108,6 +108,8 @@ func _process(delta : float):
 				var trail := nugget_trail.instantiate()
 				trail.next = self
 				trail.position.y = 10000
+				trail.progress_position = GameState.progress - 0.122
+				trail.position.x = position.x
 				$"..".add_child(trail)
 				if nugger_trail_head:
 					nugger_trail_head.next = trail
