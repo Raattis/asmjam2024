@@ -5,7 +5,7 @@ const end_nugget_scene = preload("res://end_nugget.tscn")
 func _ready():
 	var rand := RandomNumberGenerator.new()
 	rand.seed = 3
-	for i in range(30): # range(len(GameState.nugs_eaten)):
+	for i in range(len(GameState.nugs_eaten)):
 		var nug := end_nugget_scene.instantiate()
 		nug.position.x = rand.randf_range(2.8, 0.8)
 		if rand.randi_range(0, 1) == 0:

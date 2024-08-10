@@ -162,7 +162,6 @@ _data = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.435116, 0)
 
 [node name="intro_nuggets" parent="." instance=ExtResource("1_3l6i5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="intro_camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.999717, 0.0238041, 0, -0.0238041, 0.999717, 0, 1.33691, 2.5801)
