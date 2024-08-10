@@ -56,9 +56,9 @@ func _process(delta : float):
 
 	var joystick := GameState.virtual_joystick()
 	if joystick.length() > 0.05:
-		const deadzone := 0.5
-		left_right = clamp(abs(joystick.x) - deadzone, 0, 1) * sign(joystick.x)
-		up_down = clamp(abs(joystick.y) - deadzone, 0, 1) * sign(-joystick.y)
+		const deadzone := 0.6
+		left_right = clamp(abs(joystick.x) - deadzone, 0, 1) * sign(joystick.x) / (1 - deadzone)
+		up_down = clamp(abs(joystick.y) - deadzone, 0, 1) * sign(-joystick.y) / (1 - deadzone)
 	var lerp_factor := 1.0 - pow(0.1, delta)
 	var lerp_factor_fast := 1.0 - pow(0.001, delta)
 	if not GameState.is_stunned():

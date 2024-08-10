@@ -72,7 +72,20 @@ var mouse_drag_start := Vector2()
 var mouse_pos := Vector2()
 func virtual_joystick() -> Vector2:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		return (mouse_pos - mouse_drag_start) / 30
+		var l := get_viewport().get_visible_rect().size.y / 20.0
+		var m := mouse_pos - mouse_drag_start
+		var move := false
+		if m.abs().x > l:
+			m.x = l * sign(m.x)
+			move = true
+		if m.abs().y > l:
+			m.y = l * sign(m.y)
+			move = true
+		if move:
+			mouse_drag_start = mouse_pos - m
+		m /= l
+		print(m)
+		return m
 	return Vector2()
 
 func _input(event):
